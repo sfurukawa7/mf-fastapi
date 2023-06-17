@@ -9,25 +9,21 @@ services:
       - .:/home/workspace
     build: .
     command: [
-       "uvicorn",
-       "src.main:app",
-       "--reload",
-       "--host",
-       "0.0.0.0",
-       "--port",
-       "8080"
+       "python",
+       "src/main.py",
     ]
   db:
+    container_name: db
     image: mysql:5.7
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: "fastapi"
       TZ: "Asia/Tokyo"
       LANG: "ja_JP.UTF-8"
-      LC_ALL: "ja_JP.UTF-8"
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
       - 9000:3306
+    command: --default-authentication-plugin=mysql_native_password
 volumes:
   mysql_data:
