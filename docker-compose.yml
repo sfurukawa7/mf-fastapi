@@ -8,10 +8,11 @@ services:
     volumes:
       - .:/home/workspace
     build: .
-    command: [
-       "python",
-       "src/main.py",
-    ]
+    # command: [
+    #    "python",
+    #    "src/main.py",
+    # ]
+    tty: true
   db:
     container_name: db
     image: mysql:5.7
