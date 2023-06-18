@@ -18,3 +18,8 @@ async def create_task(
 @router.get("/tasks", response_model=schemas.GetTasksResponse)
 async def get_tasks(db: AsyncSession = Depends(get_db)):
     return await service.get_tasks(db)
+
+
+@router.get("/tasks/{task_id}", response_model=schemas.GetTaskResponse)
+async def get_task(task_id: int, db: AsyncSession = Depends(get_db)):
+    return await service.get_task(db, task_id)

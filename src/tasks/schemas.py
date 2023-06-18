@@ -27,3 +27,7 @@ class GetTasksResponse(BaseModel):
 
     class config:
         orm_mode = True
+
+
+class GetTaskResponse(TaskResponse):
+    pass

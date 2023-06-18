@@ -20,9 +20,9 @@ async def get_tasks(db: AsyncSession):
 
 
 async def get_task(db: AsyncSession, id: int):
-    result = await db.execute(select(models.Task).filter(models.Task.id == id))
-    task = result.first()
-    return task[0] if task else None
+    result = await db.scalar(select(models.Task).filter(models.Task.id == id))
+    task = row_to_dict(result)
+    return task if task else None
 
 
 # async def update_task(db: AsyncSession, id: int, body: schemas.UpdateTaskRequest):
