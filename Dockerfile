@@ -22,4 +22,4 @@ RUN useradd -m -d /home/workspace -s /bin/bash app && \
 WORKDIR /home/workspace
 USER app
 
-# CMD ["./scripts/start-dev.sh"]
+CMD ["./scripts/start-dev.sh"]
