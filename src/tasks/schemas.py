@@ -2,7 +2,7 @@ from typing import Optional, TypeAlias, List
 from pydantic import BaseModel, Field
 
 
-class TaskBase(BaseModel):
+class Task(BaseModel):
     title: Optional[str] = Field(None, example="My task")
     user_id: int = Field(..., example=1)
 
@@ -10,12 +10,20 @@ class TaskBase(BaseModel):
         orm_mode = True
 
 
-class Task(TaskBase):
+class TaskResponse(Task):
     id: int = Field(..., example=1)
 
 
-CreateTaskRequest: TypeAlias = TaskBase
-CreateTaskResponse: TypeAlias = Task
-GetTasksResponse: TypeAlias = List[Task]
-UpdateTaskRequest: TypeAlias = TaskBase
-UpdateTaskResponse: TypeAlias = Task
+class CreateTaskRequest(Task):
+    pass
+
+
+class CreateTaskResponse(TaskResponse):
+    pass
+
+
+class GetTasksResponse(BaseModel):
+    data: List[TaskResponse] = Field([], example="My task")
+
+    class config:
+        orm_mode = True

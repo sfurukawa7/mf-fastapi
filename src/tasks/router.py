@@ -7,17 +7,12 @@ from src.database import get_db
 router = APIRouter()
 
 
-@router.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@router.post("/tasks", response_model=schemas.CreateTaskRequest)
+@router.post("/tasks", response_model=schemas.CreateTaskResponse)
 async def create_task(
     body: schemas.CreateTaskRequest,
     db: AsyncSession = Depends(get_db),
 ):
-    return service.create_task(db, body)
+    return await service.create_task(db, body)
 
 
 @router.get("/tasks", response_model=schemas.GetTasksResponse)

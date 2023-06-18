@@ -9,15 +9,6 @@ async_session = sessionmaker(
 
 Base = declarative_base()
 
-# from sqlalchemy import Column, Integer, String, ForeignKey
-
-
-# class Task(Base):
-#     __tablename__ = "tasks"
-
-#     id = Column(Integer, primary_key=True, index=True)
-#     title = Column(String(255))
-
 
 async def get_db():
     async with async_session() as session:
